@@ -1,3 +1,6 @@
+<?php
+    defined('BASEPATH') OR exit('No direct script access allowed');
+?>			
 			<nav id="usernav">
   				<ul>
   					<li>
@@ -13,4 +16,4 @@
   				</ul>
   			</nav>
   		</header>
-  		
+ 		

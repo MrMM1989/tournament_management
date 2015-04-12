@@ -12,6 +12,5 @@
   	<body>
   		<header>
   			<p id="pagetitle">
-  				<a href="/">Tournament Management</a>
+  				<a href="<?php echo site_url('/'); ?>">Tournament Management</a>
   			</p>  		
-  		
