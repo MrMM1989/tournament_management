@@ -24,23 +24,45 @@ header {
 	box-shadow: 0em 0.4em 0.4em #555555;
 	height: 20%;
 	min-height: 120px;
+	min-width: 100%;
 	width: 100%;
 }
-header p {
+header #pagetitle {
 	font-size: 3em;
 	font-weight: bold;
 	padding-left: 2%;
 	padding-top: 3%;
+	min-width: 50%;
 }
-header a {
-	color: #FFFFFF;
+header #pagetitle a {
 	text-decoration: none;
+}
+header a, header p, header ul li {
+	color: #FFFFFF;
 }
 
 /**********************************************************
- * NAV BAR CSS STYLING									
+ * USER NAV BAR CSS STYLING									
  **********************************************************/
-nav {
+#usernav {
+	float: right;
+	width: 50%;
+}
+#usernav ul {
+	float: right;
+	margin-right: 5%;
+	min-width: 350px;
+	width: 45%;
+}
+#usernav ul li {
+	float: left;
+	margin-right: 3%;
+}
+
+/**********************************************************
+ * MAIN NAV BAR CSS STYLING									
+ **********************************************************/
+#mainnav {
 	background-color: #005500;
 	height: 70%;
 	min-width: 220px;
@@ -48,7 +70,7 @@ nav {
 }
 
 /**********************************************************
- * NAV BAR CSS STYLING									
+ * FOOTER CSS STYLING									
  **********************************************************/
 footer {
 	background-color: #000000;
