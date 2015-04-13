@@ -22,7 +22,7 @@ body {
 }
 main {
 	margin-left: 240px;
-	padding: 2% 4%;
+	padding: 3% 6% 1%;
 	width: 85%;
 }
 h1, h2, h3 {
@@ -87,16 +87,31 @@ header a, header p, header ul li {
  * MAIN NAV BAR CSS STYLING									
  **********************************************************/
 #mainnav {
-	background-color: #005500;
-	border-radius: 1em;
-	box-shadow: 0.4em 0.4em 0.4em #555555;
 	float: left;
-	margin: 2% 0%;
+	margin: 3% 0%;
 	min-width: 220px;
-	padding: 2%;
 	width: 15%;
 }
-
+#mainnav ul {
+	width: 100%;
+}
+#mainnav ul li {
+	margin-bottom: 15%;
+	width: 100%;
+}
+#mainnav ul li a {
+	background-color: #005500;
+	border-radius: 0.75em;
+	box-shadow: 0.4em 0.4em 0.4em #555555;
+	color: #FFFFFF;
+	display: inline-block;
+	font-size: 1.25em;
+	margin-left: 5%;
+	padding: 6% 0%;
+	text-align: center;
+	text-decoration: none;
+	width: 95%;
+}
 /**********************************************************
  * FORM CSS STYLING									
  **********************************************************/

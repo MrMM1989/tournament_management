@@ -3,24 +3,18 @@
 ?>
 		<div id="pbody">
 			<nav id="mainnav">
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
-	  			<p>nav!</p>
+	  			<ul>
+	  				<li>
+	  					<a href="<?php echo site_url('/'); ?>">Home</a>
+	  				</li>
+	  				<li>
+	  					<a href="<?php echo site_url('/'); ?>">Tournaments</a>
+	  				</li>
+	  				<li>
+	  					<a href="<?php echo site_url('/'); ?>">Ranking</a>
+	  				</li>
+	  				<li>
+	  					<a href="<?php echo site_url('/'); ?>">Contact</a>
+	  				</li>
+	  			</ul>
 	  		</nav>
