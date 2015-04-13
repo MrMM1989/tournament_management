@@ -49,7 +49,7 @@ class Account extends CI_Controller {
 		$this->load->view('header', $data);
 		$this->load->view('navigation/user_visitor');
 		$this->load->view('navigation/main_visitor');
-		$this->load->view('home/home_visitor');
+		$this->load->view('account/register_form');
 		$this->load->view('footer');
 	}
 }
