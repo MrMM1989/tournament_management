@@ -22,7 +22,7 @@ body {
 }
 main {
 	margin-left: 240px;
-	padding: 2%;
+	padding: 2% 4%;
 	width: 85%;
 }
 h1, h2, h3 {
@@ -30,6 +30,7 @@ h1, h2, h3 {
 }
 h1 {
 	font-size: 2.25em;
+	margin-bottom: 3%;
 }
 h2 {
 	font-size: 1.75em;
@@ -88,6 +89,7 @@ header a, header p, header ul li {
 #mainnav {
 	background-color: #005500;
 	border-radius: 1em;
+	box-shadow: 0.4em 0.4em 0.4em #555555;
 	float: left;
 	margin: 2% 0%;
 	min-width: 220px;
@@ -98,6 +100,36 @@ header a, header p, header ul li {
 /**********************************************************
  * FORM CSS STYLING									
  **********************************************************/
+form, form ul, form ul li {
+	width: 100%;
+}
+
+form ul li {
+	margin: 6% 0%;
+}
+label {
+	display: inline-block;
+	min-width: 25%;
+}
+input {
+	border-radius: 0.5em;
+	box-shadow: 0.4em 0.4em 0.4em #999999;
+}
+input[type=text], input[type=email], input[type=password]{
+	border: 0.2em solid #777777;
+	width: 20%;
+}
+input[type=submit] {
+	cursor: pointer;
+	font-weight: bold;
+	margin-left: 25%;
+	padding: 1% 0%;
+	width: 20%;
+}
+.buttonblue {
+	color: #FFFFFF;
+	background-color: #00477B;
+}
 
 /**********************************************************
  * FOOTER CSS STYLING									
