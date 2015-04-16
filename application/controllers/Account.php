@@ -43,7 +43,7 @@ class Account extends CI_Controller {
 	public function register_form()
 	{
 		$data = array (
-			'title' => 'Register' 
+			'title' => 'Register an account' 
 		);
 		
 		$this->load->view('header', $data);

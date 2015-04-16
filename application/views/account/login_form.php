@@ -4,7 +4,10 @@
 		<main>
 			<h1><?php echo $title; ?></h1>
 			<p>You haven't an account yet? Register an account <a href="<?php echo site_url('account/register_form'); ?>">here</a>!</p>
-			<?php echo form_open('account/login'); ?>
+			<?php 
+				$attributes = array('id' => 'loginform');
+				echo form_open('account/login', $attributes); 
+			?>
 			<ul>
 				<li>
 					<label for="email">Email: </label>

@@ -2,9 +2,12 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 		<main>
-			<h1>Register an account</h1>
+			<h1><?php echo $title; ?></h1>
 			<p>Do you already have an account? Log in <a href="<?php echo site_url('account/login_form'); ?>">here</a>!</p>
-			<?php echo form_open('account/register'); ?>
+			<?php
+				$attributes = array('id' => 'registerform'); 
+				echo form_open('account/register', $attributes); 
+			?>
 			<ul>
 				<li>
 					<label for="username">Username: </label>
@@ -29,6 +32,7 @@
 				<li>
 					<input id="accepttos" type="checkbox" name="accepttos" required />
 					<label for="accepttos">I agree with the terms of service and privacy policy!</label>
+					<label for="accepttos" class="error"></label>
 				</li>
 				<li>
 					<input id="submit" class="buttonblue" type="submit" name="submit" value="Register" />
