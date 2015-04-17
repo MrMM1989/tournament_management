@@ -13,6 +13,7 @@ class Account extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('form');
+		$this->load->library('form_validation');
 	}
 	
 	/**
@@ -32,6 +33,66 @@ class Account extends CI_Controller {
 		$this->load->view('navigation/main_visitor');
 		$this->load->view('account/login_form');
 		$this->load->view('footer');
+	}
+	
+	/**
+	 * Register Method - AccountController - Method for validating and registering a user account
+	 */	
+	public function register()
+	{
+		$val_rules = array(
+				array (
+					'field' => 'username',
+					'label' => 'username',
+					'rules' => 'required|min_length[5]|max_length[25]|alpha_numeric',
+					'errors' => array(
+						'alpha_numeric' => 'A %s may only contain letters, numbers and underscores.',
+					)
+				),
+				array (
+					'field' => 'email',
+					'label' => 'email',
+					'rules' => 'required|valid_email'
+				),
+				array (
+					'field' => 'cemail',
+					'label' => 'confirmed email',
+					'rules' => 'required|matches[email]'
+				),
+				array (
+					'field' => 'password',
+					'label' => 'password',
+					'rules' => 'required|min_length[5]'
+				),
+				array (
+					'field' => 'cpassword',
+					'label' => 'confirmed password',
+					'rules' => 'required|matches[password]'
+				),
+				array (
+					'field' => 'accepttos',
+					'label' => '',
+					'rules' => 'required',
+					'errors' => array (
+						'required' => 'Please agree with our terms of service and privacy policy.'
+					)
+				) 
+		);
+		
+		$this->form_validation->set_rules($val_rules);
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			$data = array (
+				'title' => 'Register an account' 
+			);
+			
+			$this->load->view('header', $data);
+			$this->load->view('navigation/user_visitor');
+			$this->load->view('navigation/main_visitor');
+			$this->load->view('account/register_form');
+			$this->load->view('footer');
+		}
 	}
 	
 	/**
