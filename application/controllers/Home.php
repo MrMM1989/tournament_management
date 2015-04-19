@@ -18,7 +18,15 @@ class Home extends CI_Controller {
 		);
 		
 		$this->load->view('header', $data);
-		$this->load->view('navigation/user_visitor');
+		
+		if(isset($_SESSION['username']))
+		{
+			$this->load->view('navigation/user_user');
+		}
+		else
+		{
+			$this->load->view('navigation/user_visitor');	
+		}
 		$this->load->view('navigation/main_visitor');
 		$this->load->view('home/home_visitor');
 		$this->load->view('footer');

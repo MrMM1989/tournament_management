@@ -17,6 +17,25 @@ class Account extends CI_Controller {
 		$this->load->model('user_model');
 	}
 	
+	
+	/**
+	 * Login Method - AccountController - Method for verifying a login 
+	 */	
+	 public function login()
+	 {
+	 	$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		
+	 	$login = $this->user_model->confirm_master_login($email, $password);
+		
+		if ($login != FALSE)
+		{
+			$_SESSION['username'] = $login;
+			redirect('home');
+		}
+	 }
+	
+	
 	/**
 	 * Login_form Method - AccountController - Loginpage Site
 	 *
@@ -25,16 +44,32 @@ class Account extends CI_Controller {
 	 */
 	public function login_form()
 	{
-		$data = array (
+		if(isset($_SESSION['username']))
+		{
+			redirect('home');
+		}
+		else
+		{
+			$data = array (
 			'title' => 'Login' 
-		);
-		
-		$this->load->view('header', $data);
-		$this->load->view('navigation/user_visitor');
-		$this->load->view('navigation/main_visitor');
-		$this->load->view('account/login_form');
-		$this->load->view('footer');
+			);
+			
+			$this->load->view('header', $data);
+			$this->load->view('navigation/user_visitor');
+			$this->load->view('navigation/main_visitor');
+			$this->load->view('account/login_form');
+			$this->load->view('footer');	
+		}
 	}
+	
+	/**
+	 * Logout Method - AccountController - Log a user out
+	 */	
+	 public function logout()
+	 {
+	 	session_destroy();
+		redirect('home');
+	 }
 	
 	/**
 	 * Register Method - AccountController - Method for validating and registering a user account
@@ -45,15 +80,19 @@ class Account extends CI_Controller {
 				array (
 					'field' => 'username',
 					'label' => 'username',
-					'rules' => 'required|min_length[5]|max_length[25]|alpha_numeric',
+					'rules' => 'required|min_length[5]|max_length[25]|alpha_dash|is_unique[tmt_master_user.master_user_name]',
 					'errors' => array(
-						'alpha_numeric' => 'A %s may only contain letters, numbers and underscores.',
+						'alpha_dash' => 'A %s may only contain letters, numbers and underscores.',
+						'is_unique' => 'Unfortunately this username is already taken. Please choose another.'
 					)
 				),
 				array (
 					'field' => 'email',
 					'label' => 'email',
-					'rules' => 'required|valid_email|max_length[100]'
+					'rules' => 'required|valid_email|max_length[100]|is_unique[tmt_master_user.master_user_email]',
+					'errors' => array (
+						'is_unique' => 'Unfortunately this email is already taken. Please choose another.'
+					)
 				),
 				array (
 					'field' => 'cemail',
@@ -100,7 +139,9 @@ class Account extends CI_Controller {
 			$email = $this->input->post('email', TRUE);
 			$password = $this->input->post('password');
 			
-			$this->user_model->insert_master_registration($username, $email, $password);	
+			$this->user_model->insert_master_registration($username, $email, $password);
+			
+			redirect('home');	
 		}
 	}
 	
@@ -112,14 +153,21 @@ class Account extends CI_Controller {
 	 */
 	public function register_form()
 	{
-		$data = array (
+		if(isset($_SESSION['username']))
+		{
+			redirect('home');
+		}
+		else
+		{
+			$data = array (
 			'title' => 'Register an account' 
-		);
-		
-		$this->load->view('header', $data);
-		$this->load->view('navigation/user_visitor');
-		$this->load->view('navigation/main_visitor');
-		$this->load->view('account/register_form');
-		$this->load->view('footer');
+			);
+			
+			$this->load->view('header', $data);
+			$this->load->view('navigation/user_visitor');
+			$this->load->view('navigation/main_visitor');
+			$this->load->view('account/register_form');
+			$this->load->view('footer');	
+		}
 	}
 }

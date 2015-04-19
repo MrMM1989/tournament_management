@@ -13,6 +13,41 @@ class User_model extends CI_Model {
     	parent::__construct();
     }
 	
+	
+	/**
+	 * Confirm_master_login Method - User_model
+	 * 
+	 * Confirm the login of a user
+	 */
+	public function confirm_master_login($email, $password)
+	{
+		$this->db->select('master_user_name, master_user_password');
+		$this->db->from('tmt_master_user');
+		$this->db->where('master_user_email', $email);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			$row = $query->row();
+			$hashed_password = $row->master_user_password;
+			
+			if (password_verify($password, $hashed_password))
+			{
+				return $row->master_user_name;
+			}
+			else
+			{
+				return FALSE;	
+			}
+		}
+		else
+		{
+			return FALSE;			
+		}
+	}
+	
 	/**
 	 * Insert_master_registration Method - User_model
 	 * 
@@ -33,5 +68,5 @@ class User_model extends CI_Model {
 		
 		//Insert the data into the database
 		$this->db->insert('tmt_master_user', $data);
-	}
+	}	
 }
