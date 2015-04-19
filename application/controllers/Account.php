@@ -23,6 +23,11 @@ class Account extends CI_Controller {
 	 */	
 	 public function login()
 	 {
+	 	if(isset($_SESSION['username']))
+		{
+			redirect('home');
+		}
+		
 	 	$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		
@@ -32,6 +37,12 @@ class Account extends CI_Controller {
 		{
 			$_SESSION['username'] = $login;
 			redirect('home');
+		}
+		else
+		{
+			$_SESSION['login_error'] = 'TRUE';
+			$this->session->mark_as_flash('login_error');
+			redirect('account/login_form');
 		}
 	 }
 	
@@ -53,7 +64,7 @@ class Account extends CI_Controller {
 			$data = array (
 			'title' => 'Login' 
 			);
-			
+						
 			$this->load->view('header', $data);
 			$this->load->view('navigation/user_visitor');
 			$this->load->view('navigation/main_visitor');
@@ -76,6 +87,11 @@ class Account extends CI_Controller {
 	 */	
 	public function register()
 	{
+		if(isset($_SESSION['username']))
+		{
+			redirect('home');
+		}
+
 		$val_rules = array(
 				array (
 					'field' => 'username',
