@@ -14,6 +14,7 @@ class Account extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->model('user_model');
 	}
 	
 	/**
@@ -52,7 +53,7 @@ class Account extends CI_Controller {
 				array (
 					'field' => 'email',
 					'label' => 'email',
-					'rules' => 'required|valid_email'
+					'rules' => 'required|valid_email|max_length[100]'
 				),
 				array (
 					'field' => 'cemail',
@@ -62,7 +63,7 @@ class Account extends CI_Controller {
 				array (
 					'field' => 'password',
 					'label' => 'password',
-					'rules' => 'required|min_length[5]'
+					'rules' => 'required|min_length[5]|max_length[250]'
 				),
 				array (
 					'field' => 'cpassword',
@@ -92,6 +93,14 @@ class Account extends CI_Controller {
 			$this->load->view('navigation/main_visitor');
 			$this->load->view('account/register_form');
 			$this->load->view('footer');
+		}
+		else
+		{
+			$username = $this->input->post('username', TRUE);
+			$email = $this->input->post('email', TRUE);
+			$password = $this->input->post('password');
+			
+			$this->user_model->insert_master_registration($username, $email, $password);	
 		}
 	}
 	
