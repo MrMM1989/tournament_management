@@ -68,5 +68,5 @@ function submitRegistration() {
  * Calls all the necessary functions and objects when the document is ready
  */
 $( document ).ready(function() {    
-    //submitRegistration();      
+    submitRegistration();      
 });

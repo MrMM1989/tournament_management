@@ -21,6 +21,7 @@ class User_model extends CI_Model {
 	 */
 	public function confirm_master_login($email, $password)
 	{
+		//Retrieve the username and the password from database
 		$this->db->select('master_user_name, master_user_password');
 		$this->db->from('tmt_master_user');
 		$this->db->where('master_user_email', $email);
@@ -28,20 +29,24 @@ class User_model extends CI_Model {
 		
 		$query = $this->db->get();
 		
+		//First check if the email address is found in the database
 		if($query->num_rows() > 0)
 		{
 			$row = $query->row();
 			$hashed_password = $row->master_user_password;
 			
+			//Verify if password matches the password in the database
 			if (password_verify($password, $hashed_password))
 			{
 				return $row->master_user_name;
 			}
+			//Password doesn't match the hashed password in the database, return FALSE
 			else
 			{
 				return FALSE;	
 			}
 		}
+		//Email adress isn't found, return FALSE
 		else
 		{
 			return FALSE;			
