@@ -19,23 +19,31 @@ class Account extends CI_Controller {
 	
 	
 	/**
-	 * Login Method - AccountController - Method for verifying a login 
+	 * Login Method - AccountController - Method for verifying a login
+	 * 
+	 * Maps to: 
+	 *	- domain/account/login 
 	 */	
 	 public function login()
 	 {
+	 	// Check if user isn't already logged in, if so redirect to homepage
 	 	if(isset($_SESSION['username']))
 		{
 			redirect('home');
 		}
 		
+		// Take user input out of input fields
 	 	$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		
+		// Check user credentials = actual login check => function in model
 	 	$login = $this->user_model->confirm_master_login($email, $password);
 		
+		// If login credentials are valid, set a session and the user is logged in, otherwise show an error
 		if ($login != FALSE)
 		{
-			$_SESSION['username'] = $login;
+			$_SESSION['username'] = $login['user_name'];
+			$_SESSION['email'] = $login['user_email'];
 			redirect('home');
 		}
 		else
@@ -55,10 +63,12 @@ class Account extends CI_Controller {
 	 */
 	public function login_form()
 	{
+		// First check if the user isn't already logged in, if so redirect to homepage
 		if(isset($_SESSION['username']))
 		{
 			redirect('home');
 		}
+		// Show login form if user isn't logged in
 		else
 		{
 			$data = array (
@@ -84,6 +94,9 @@ class Account extends CI_Controller {
 	
 	/**
 	 * Register Method - AccountController - Method for validating and registering a user account
+	 * 
+	 * Maps to:
+	 * 	- domain/account/register
 	 */	
 	public function register()
 	{
@@ -186,4 +199,34 @@ class Account extends CI_Controller {
 			$this->load->view('footer');	
 		}
 	}
+	
+	/**
+	 * Profile Method - AccountController - Profilepage Site
+	 *
+	 * Maps to: 
+	 * 	- domain/account/profile
+	 */
+	 public function profile()
+	 {
+	 		// Check if the user is logged in, if not show login form
+	 		if(!isset($_SESSION['username']))
+			{
+				$_SESSION['login_first'] = 'TRUE';
+				$this->session->mark_as_flash('login_first');
+				redirect('account/login_form');
+			}
+	 		
+			// Load the profile page
+	 		$data = array (
+				'title' => 'Profile: '.$_SESSION['username'],
+				'user_email' => $_SESSION['email'],
+				'user_name' => $_SESSION['username']
+			);
+			
+			$this->load->view('header', $data);
+			$this->load->view('navigation/user_user');
+			$this->load->view('navigation/main_visitor');
+			$this->load->view('account/profile');
+			$this->load->view('footer');	
+	 }
 }

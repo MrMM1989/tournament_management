@@ -55,6 +55,30 @@ var registrationForm = {
 	}
 };
 
+//Hide the change forms on the profile page and bind events to links/buttons for changing info
+function prepareProfile(){
+	$('#emailchangeform').hide();
+	$('#passwordchangeform').hide();
+	
+	$('#emailchange').click(function(event){
+		event.preventDefault();
+		$('#emailchange').hide();
+		$('#emailchangeform').show();
+		
+		$('#passwordchange').show();
+		$('#passwordchangeform').hide();
+	});
+	
+	$('#passwordchange').click(function(event){
+		event.preventDefault();
+		$('#passwordchange').hide();
+		$('#passwordchangeform').show();
+		
+		$('#emailchange').show();
+		$('#emailchangeform').hide();
+	});
+}
+
 
 //Validate and submit a registration
 function submitRegistration() {
@@ -68,5 +92,6 @@ function submitRegistration() {
  * Calls all the necessary functions and objects when the document is ready
  */
 $( document ).ready(function() {    
+    prepareProfile();
     submitRegistration();      
 });

@@ -3,9 +3,17 @@
 ?>
 		<main>
 			<h1><?php echo $title; ?></h1>
-			<p>You haven't an account yet? Register an account <a href="<?php echo site_url('account/register_form'); ?>">here</a>!</p>
+			<p>
+				You haven't an account yet? 
+				Register an account <a href="<?php echo site_url('account/register_form'); ?>">here</a>!
+			</p>
 			<?php if(isset($_SESSION['login_error'])): ?>
 				<p class="error">Invalid login credentials! Please try again!</p>
+			<?php
+				endif;
+				if(isset($_SESSION['login_first'])):
+			?>
+				<p class="error">You need to login first to view this page!</p>
 			<?php 
 				endif;
 				$attributes = array('id' => 'loginform');

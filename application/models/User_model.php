@@ -38,7 +38,11 @@ class User_model extends CI_Model {
 			//Verify if password matches the password in the database
 			if (password_verify($password, $hashed_password))
 			{
-				return $row->master_user_name;
+				$user_array = array (
+					'user_name' => $row->master_user_name,
+					'user_email' => $email
+				);
+				return $user_array;
 			}
 			//Password doesn't match the hashed password in the database, return FALSE
 			else
