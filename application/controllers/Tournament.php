@@ -1,26 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Tournament extends CI_Controller {
 
 	/**
-	 * Index Method - HomeController - Homepage Site
+	 * Index Method - TournamentController - Overviewpage tournaments
 	 *
 	 * Maps to: 
-	 * 	- domain
-	 * 	- domain/home
-	 * 	- domain/home/index
+	 * 	- domain/tournament
+	 * 	- domain/tournament/index
 	 */
 	public function index()
 	{
 		$data = array (
-			'title' => 'Home' 
+			'title' => 'Tournaments' 
 		);
 		
-		$this->load->view('header', $data);		
+		$this->load->view('header', $data);
 		$this->_generate_user_nav();
-		$this->_generate_main_nav();
-		$this->load->view('home/home_visitor');
+		$this->_generate_main_nav();		
+		$this->load->view('tournament/tournament_overview');
 		$this->load->view('footer');
 	}
 	

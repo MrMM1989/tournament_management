@@ -14,6 +14,9 @@
 	  					<a href="<?php echo site_url('/'); ?>">Ranking</a>
 	  				</li>
 	  				<li>
+	  					<a href="<?php echo site_url('/'); ?>">My Team</a>
+	  				</li>
+	  				<li>
 	  					<a href="<?php echo site_url('/'); ?>">Contact</a>
 	  				</li>
 	  			</ul>

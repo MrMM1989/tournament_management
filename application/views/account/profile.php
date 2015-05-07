@@ -31,7 +31,7 @@
 						<?php echo form_error('cnewemail', '<label class="error">','</label>') ?>
 					</li>
 					<li>
-						<input id="submit" class="buttonblue" type="submit" name="submit" value="Change Email" />
+						<input id="emailsubmit" class="buttonblue" type="submit" name="submit" value="Change Email" />
 					</li>
 				</ul>
 			</form>
@@ -59,7 +59,7 @@
 						<?php echo form_error('cnewpassword', '<label class="error">','</label>') ?>
 					</li>
 					<li>
-						<input id="submit" class="buttonblue" type="submit" name="submit" value="Change Password" />
+						<input id="passwordsubmit" class="buttonblue" type="submit" name="submit" value="Change Password" />
 					</li>
 				</ul>
 			</form>

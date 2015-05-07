@@ -225,8 +225,38 @@ class Account extends CI_Controller {
 			
 			$this->load->view('header', $data);
 			$this->load->view('navigation/user_user');
-			$this->load->view('navigation/main_visitor');
+			$this->load->view('navigation/main_user');
 			$this->load->view('account/profile');
 			$this->load->view('footer');	
 	 }
+	 
+	 /**
+	 * Private function for generating the main navigation based on user role
+	 */
+	 private function _generate_main_nav()
+	 {
+	 	if(isset($_SESSION['username']))
+		{
+			$this->load->view('navigation/main_user');
+		}
+		else 
+		{
+			$this->load->view('navigation/main_visitor');
+		}
+	 }
+	
+	/**
+	 * Private function for generating the user navigation based on user role
+	 */
+	private function _generate_user_nav()
+	{
+		if(isset($_SESSION['username']))
+		{
+			$this->load->view('navigation/user_user');
+		}
+		else
+		{
+			$this->load->view('navigation/user_visitor');	
+		}
+	}
 }
